@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="4557fe35-3343-49f3-b3b1-4e6a792dbef5" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1k0uQx9SLil9nTW2ENITvHWw2mo" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="RunManager">
+    <configuration name="ex2" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Exercise 2" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ex2.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.ex2" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4557fe35-3343-49f3-b3b1-4e6a792dbef5" name="Default Changelist" comment="" />
+      <created>1604849817065</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1604849817065</updated>
+      <workItem from="1604849826801" duration="8557000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="2747" y="103" key="FileChooserDialogImpl" timestamp="1604849933266">
+      <screen x="1680" y="-367" width="2560" height="1417" />
+    </state>
+    <state x="2747" y="103" key="FileChooserDialogImpl/1680.-367.2560.1417/0.23.1680.1027@1680.-367.2560.1417" timestamp="1604849933266" />
+    <state width="2518" height="468" key="GridCell.Tab.0.bottom" timestamp="1604878487096">
+      <screen x="1680" y="-367" width="2560" height="1417" />
+    </state>
+    <state width="2518" height="468" key="GridCell.Tab.0.bottom/1680.-367.2560.1417/0.23.1680.1027@1680.-367.2560.1417" timestamp="1604878487096" />
+    <state width="2518" height="468" key="GridCell.Tab.0.center" timestamp="1604878487095">
+      <screen x="1680" y="-367" width="2560" height="1417" />
+    </state>
+    <state width="2518" height="468" key="GridCell.Tab.0.center/1680.-367.2560.1417/0.23.1680.1027@1680.-367.2560.1417" timestamp="1604878487095" />
+    <state width="2518" height="468" key="GridCell.Tab.0.left" timestamp="1604878487095">
+      <screen x="1680" y="-367" width="2560" height="1417" />
+    </state>
+    <state width="2518" height="468" key="GridCell.Tab.0.left/1680.-367.2560.1417/0.23.1680.1027@1680.-367.2560.1417" timestamp="1604878487095" />
+    <state width="2518" height="468" key="GridCell.Tab.0.right" timestamp="1604878487096">
+      <screen x="1680" y="-367" width="2560" height="1417" />
+    </state>
+    <state width="2518" height="468" key="GridCell.Tab.0.right/1680.-367.2560.1417/0.23.1680.1027@1680.-367.2560.1417" timestamp="1604878487096" />
+    <state width="2518" height="468" key="GridCell.Tab.1.bottom" timestamp="1604878487098">
+      <screen x="1680" y="-367" width="2560" height="1417" />
+    </state>
+    <state width="2518" height="468" key="GridCell.Tab.1.bottom/1680.-367.2560.1417/0.23.1680.1027@1680.-367.2560.1417" timestamp="1604878487098" />
+    <state width="2518" height="468" key="GridCell.Tab.1.center" timestamp="1604878487097">
+      <screen x="1680" y="-367" width="2560" height="1417" />
+    </state>
+    <state width="2518" height="468" key="GridCell.Tab.1.center/1680.-367.2560.1417/0.23.1680.1027@1680.-367.2560.1417" timestamp="1604878487097" />
+    <state width="2518" height="468" key="GridCell.Tab.1.left" timestamp="1604878487097">
+      <screen x="1680" y="-367" width="2560" height="1417" />
+    </state>
+    <state width="2518" height="468" key="GridCell.Tab.1.left/1680.-367.2560.1417/0.23.1680.1027@1680.-367.2560.1417" timestamp="1604878487097" />
+    <state width="2518" height="468" key="GridCell.Tab.1.right" timestamp="1604878487098">
+      <screen x="1680" y="-367" width="2560" height="1417" />
+    </state>
+    <state width="2518" height="468" key="GridCell.Tab.1.right/1680.-367.2560.1417/0.23.1680.1027@1680.-367.2560.1417" timestamp="1604878487098" />
+    <state width="1280" height="708" key="XDebugger.FullValuePopup" timestamp="1604877510165">
+      <screen x="1680" y="-367" width="2560" height="1417" />
+    </state>
+    <state width="1280" height="708" key="XDebugger.FullValuePopup/1680.-367.2560.1417/0.23.1680.1027@1680.-367.2560.1417" timestamp="1604877510165" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/ex2.py</url>
+          <line>581</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/ex2.py</url>
+          <line>583</line>
+          <option name="timeStamp" value="36" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/ex2.py</url>
+          <line>584</line>
+          <option name="timeStamp" value="37" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/ex2.py</url>
+          <line>375</line>
+          <option name="timeStamp" value="45" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Exercise_2$ex2.coverage" NAME="ex2 Coverage Results" MODIFIED="1604878487085" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+  </component>
+</project>
