@@ -570,7 +570,7 @@ if __name__ == "__main__":
         n_hid = dict(small=512, base=768)[use_t5]  # Do not modify unless you want to try t5-large
     else:
         # Custom transformer hyperparameters
-        n_layers = 3
+        n_layers = 4  # 3
         n_hid = 512
         n_k = n_v = 64
         n_head = 8
