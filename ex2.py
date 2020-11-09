@@ -493,9 +493,8 @@ def predict(d, model, beam_size=5, n_max_out=45):
     (see https://docs.dgl.ai/generated/dgl.graph.html)
     """
     ### Your code here ###
-    qcomp_graph = None
-    qcell_graph = None
-    raise NotImplementedError
+    qcomp_graph = dgl.graph(d['qcomp_edges'], device=device)
+    qcell_graph = dgl.graph(d['qcell_edges'], device=device)
 
     zbar, qroot = model.encode(in_idxs, [d['n_in']], qcomp_graph, qcell_graph)
     z_nP = zbar[:, d['nP_positions']]
