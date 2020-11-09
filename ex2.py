@@ -572,9 +572,9 @@ if __name__ == "__main__":
         # Custom transformer hyperparameters
         n_layers = 3
         n_hid = 512
-        n_k = n_v = 128  # 64
+        n_k = n_v = 64
         n_head = 8
-        weight_decay = 0
+        weight_decay = 0.0001  # 0
     device = 'cuda:0' if torch.cuda.is_available() else 'cpu'
 
     train_data, val_data, in_vocab, out_vocab, n_max_nP, t5_model = setup(use_t5)
