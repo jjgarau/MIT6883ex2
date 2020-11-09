@@ -571,7 +571,7 @@ if __name__ == "__main__":
     else:
         # Custom transformer hyperparameters
         n_layers = 4  # 3
-        n_hid = 512
+        n_hid = 1024  # 512
         n_k = n_v = 64
         n_head = 8
         weight_decay = 0
