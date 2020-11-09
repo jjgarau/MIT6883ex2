@@ -572,8 +572,8 @@ if __name__ == "__main__":
         # Custom transformer hyperparameters
         n_layers = 3
         n_hid = 512
-        n_k = n_v = 64
-        n_head = 16  # 8
+        n_k = n_v = 128  # 64
+        n_head = 8
         weight_decay = 0
     device = 'cuda:0' if torch.cuda.is_available() else 'cpu'
 
