@@ -562,12 +562,12 @@ if __name__ == "__main__":
     # IMPORTANT NOTE: if you change some of these hyperparameters during training,
     # you will also need to change them during prediction (see next section)
     n_max_in = 100
-    n_epochs = 100
-    n_batch = 64
+    n_epochs = 150  # 100
+    n_batch = 128  # 64
     learning_rate = 1e-3
     if use_t5:
         # T5 hyperparameters
-        freeze_layers = [0, 1]
+        freeze_layers = []
         weight_decay = 1e-5
         n_hid = dict(small=512, base=768)[use_t5]  # Do not modify unless you want to try t5-large
     else:
