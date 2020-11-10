@@ -577,7 +577,7 @@ if __name__ == "__main__":
         n_k = n_v = 64
         n_head = 8
         weight_decay = 0
-    device = 'cuda:0' if torch.cuda.is_available() else 'cpu'
+    device = 'cuda:1' if torch.cuda.is_available() else 'cpu'
 
     train_data, val_data, in_vocab, out_vocab, n_max_nP, t5_model = setup(use_t5)
     tensorize_data(itertools.chain(train_data, val_data))
