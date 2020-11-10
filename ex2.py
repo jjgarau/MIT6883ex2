@@ -555,19 +555,19 @@ def predict(d, model, beam_size=5, n_max_out=45):
 
 
 if __name__ == "__main__":
-    use_t5 = 'small'  # Value should be None, 'small', or 'base'
+    use_t5 = 'small'  # Value should be None, 'small', or 'base', or 'large', or '3B'
     model_save_dir = f'models/{use_t5 or "custom"}'
     os.makedirs(model_save_dir, exist_ok=True)
 
     # IMPORTANT NOTE: if you change some of these hyperparameters during training,
     # you will also need to change them during prediction (see next section)
     n_max_in = 100
-    n_epochs = 150  # 100
-    n_batch = 128  # 64
+    n_epochs = 100
+    n_batch = 64
     learning_rate = 1e-3
     if use_t5:
         # T5 hyperparameters
-        freeze_layers = []
+        freeze_layers = [0, 1]
         weight_decay = 1e-5
         n_hid = dict(small=512, base=768)[use_t5]  # Do not modify unless you want to try t5-large
     else:
@@ -622,3 +622,26 @@ if __name__ == "__main__":
             # torch.save(opt.state_dict(), os.path.join(model_save_dir, f'opt-{epoch}.pth'))
             torch.save(model.state_dict(), os.path.join(model_save_dir, f'model-{epoch}.pth'))
         print()
+
+    if False:
+        eval_epoch = 30
+
+        # Make sure your parameter here is the exact same as the parameters you trained with,
+        # else the model will not load correctly
+
+        test_data, in_vocab, out_vocab, n_max_nP, t5_model = setup(use_t5, do_eval=True)
+        model = Model()
+        model.load_state_dict(torch.load(f'models/{use_t5 or "custom"}/model-{eval_epoch}.pth'))
+        tensorize_data(test_data)
+
+        with torch.no_grad():
+            for d in tqdm(test_data):  # There's no quadratics in the test_data, fortunately
+                pred = predict(d, model)
+                d['pred_tokens'] = pred_tokens = [out_vocab.idx2token[idx] for idx in pred]
+                d['subbed_tokens'] = subbed_tokens = sub_nP(pred_tokens, d['nP'])
+                d['Predicted'] = round(evaluate_prefix_expression(subbed_tokens), 3)  # Make sure to round to 3 decimals
+
+        import pandas as pd
+
+        predictions = pd.DataFrame(test_data).set_index('Id')
+        predictions[['Predicted']].replace([np.inf, -np.inf, np.nan], 0).to_csv('prediction.csv')

@@ -3,9 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="4557fe35-3343-49f3-b3b1-4e6a792dbef5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.ipynb_checkpoints/exercise2-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/.ipynb_checkpoints/exercise2-checkpoint.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ex2.py" beforeDir="false" afterPath="$PROJECT_DIR$/ex2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/exercise2.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/exercise2.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,7 +73,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1604849817065</updated>
-      <workItem from="1604849826801" duration="17057000" />
+      <workItem from="1604849826801" duration="18412000" />
     </task>
     <servers />
   </component>
