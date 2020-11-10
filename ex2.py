@@ -555,7 +555,7 @@ def predict(d, model, beam_size=5, n_max_out=45):
 
 
 if __name__ == "__main__":
-    use_t5 = 'small'  # Value should be None, 'small', or 'base', or 'large', or '3B'
+    use_t5 = 'base'  # Value should be None, 'small', or 'base', or 'large', or '3B'
     model_save_dir = f'models/{use_t5 or "custom"}'
     os.makedirs(model_save_dir, exist_ok=True)
 
@@ -567,7 +567,7 @@ if __name__ == "__main__":
     learning_rate = 1e-3
     if use_t5:
         # T5 hyperparameters
-        freeze_layers = [0, 1, 2, 3]
+        freeze_layers = []
         weight_decay = 1e-5
         n_hid = dict(small=512, base=768)[use_t5]  # Do not modify unless you want to try t5-large
     else:
@@ -623,7 +623,7 @@ if __name__ == "__main__":
             torch.save(model.state_dict(), os.path.join(model_save_dir, f'model-{epoch}.pth'))
         print()
 
-    if False:
+    if True:
         eval_epoch = 30
 
         # Make sure your parameter here is the exact same as the parameters you trained with,
