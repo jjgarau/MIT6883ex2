@@ -567,7 +567,7 @@ if __name__ == "__main__":
     learning_rate = 1e-3
     if use_t5:
         # T5 hyperparameters
-        freeze_layers = []
+        freeze_layers = [0, 1]
         weight_decay = 1e-5
         n_hid = dict(small=512, base=768)[use_t5]  # Do not modify unless you want to try t5-large
     else:
