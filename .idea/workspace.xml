@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4557fe35-3343-49f3-b3b1-4e6a792dbef5" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.ipynb_checkpoints/exercise2-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/.ipynb_checkpoints/exercise2-checkpoint.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ex2.py" beforeDir="false" afterPath="$PROJECT_DIR$/ex2.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -72,7 +74,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1604849817065</updated>
-      <workItem from="1604849826801" duration="11593000" />
+      <workItem from="1604849826801" duration="14448000" />
     </task>
     <servers />
   </component>
@@ -84,38 +86,38 @@
       <screen x="1680" y="-367" width="2560" height="1417" />
     </state>
     <state x="2747" y="103" key="FileChooserDialogImpl/1680.-367.2560.1417/0.23.1680.1027@1680.-367.2560.1417" timestamp="1604849933266" />
-    <state width="2518" height="408" key="GridCell.Tab.0.bottom" timestamp="1604941769951">
+    <state width="2518" height="468" key="GridCell.Tab.0.bottom" timestamp="1605045084947">
       <screen x="1680" y="-367" width="2560" height="1417" />
     </state>
-    <state width="2518" height="408" key="GridCell.Tab.0.bottom/1680.-367.2560.1417/0.23.1680.1027@1680.-367.2560.1417" timestamp="1604941769951" />
-    <state width="2518" height="408" key="GridCell.Tab.0.center" timestamp="1604941769950">
+    <state width="2518" height="468" key="GridCell.Tab.0.bottom/1680.-367.2560.1417/0.23.1680.1027@1680.-367.2560.1417" timestamp="1605045084947" />
+    <state width="2518" height="468" key="GridCell.Tab.0.center" timestamp="1605045084947">
       <screen x="1680" y="-367" width="2560" height="1417" />
     </state>
-    <state width="2518" height="408" key="GridCell.Tab.0.center/1680.-367.2560.1417/0.23.1680.1027@1680.-367.2560.1417" timestamp="1604941769950" />
-    <state width="2518" height="408" key="GridCell.Tab.0.left" timestamp="1604941769950">
+    <state width="2518" height="468" key="GridCell.Tab.0.center/1680.-367.2560.1417/0.23.1680.1027@1680.-367.2560.1417" timestamp="1605045084947" />
+    <state width="2518" height="468" key="GridCell.Tab.0.left" timestamp="1605045084946">
       <screen x="1680" y="-367" width="2560" height="1417" />
     </state>
-    <state width="2518" height="408" key="GridCell.Tab.0.left/1680.-367.2560.1417/0.23.1680.1027@1680.-367.2560.1417" timestamp="1604941769950" />
-    <state width="2518" height="408" key="GridCell.Tab.0.right" timestamp="1604941769951">
+    <state width="2518" height="468" key="GridCell.Tab.0.left/1680.-367.2560.1417/0.23.1680.1027@1680.-367.2560.1417" timestamp="1605045084946" />
+    <state width="2518" height="468" key="GridCell.Tab.0.right" timestamp="1605045084947">
       <screen x="1680" y="-367" width="2560" height="1417" />
     </state>
-    <state width="2518" height="408" key="GridCell.Tab.0.right/1680.-367.2560.1417/0.23.1680.1027@1680.-367.2560.1417" timestamp="1604941769951" />
-    <state width="2518" height="468" key="GridCell.Tab.1.bottom" timestamp="1604878487098">
+    <state width="2518" height="468" key="GridCell.Tab.0.right/1680.-367.2560.1417/0.23.1680.1027@1680.-367.2560.1417" timestamp="1605045084947" />
+    <state width="2518" height="468" key="GridCell.Tab.1.bottom" timestamp="1605045084948">
       <screen x="1680" y="-367" width="2560" height="1417" />
     </state>
-    <state width="2518" height="468" key="GridCell.Tab.1.bottom/1680.-367.2560.1417/0.23.1680.1027@1680.-367.2560.1417" timestamp="1604878487098" />
-    <state width="2518" height="468" key="GridCell.Tab.1.center" timestamp="1604878487097">
+    <state width="2518" height="468" key="GridCell.Tab.1.bottom/1680.-367.2560.1417/0.23.1680.1027@1680.-367.2560.1417" timestamp="1605045084948" />
+    <state width="2518" height="468" key="GridCell.Tab.1.center" timestamp="1605045084948">
       <screen x="1680" y="-367" width="2560" height="1417" />
     </state>
-    <state width="2518" height="468" key="GridCell.Tab.1.center/1680.-367.2560.1417/0.23.1680.1027@1680.-367.2560.1417" timestamp="1604878487097" />
-    <state width="2518" height="468" key="GridCell.Tab.1.left" timestamp="1604878487097">
+    <state width="2518" height="468" key="GridCell.Tab.1.center/1680.-367.2560.1417/0.23.1680.1027@1680.-367.2560.1417" timestamp="1605045084948" />
+    <state width="2518" height="468" key="GridCell.Tab.1.left" timestamp="1605045084948">
       <screen x="1680" y="-367" width="2560" height="1417" />
     </state>
-    <state width="2518" height="468" key="GridCell.Tab.1.left/1680.-367.2560.1417/0.23.1680.1027@1680.-367.2560.1417" timestamp="1604878487097" />
-    <state width="2518" height="468" key="GridCell.Tab.1.right" timestamp="1604878487098">
+    <state width="2518" height="468" key="GridCell.Tab.1.left/1680.-367.2560.1417/0.23.1680.1027@1680.-367.2560.1417" timestamp="1605045084948" />
+    <state width="2518" height="468" key="GridCell.Tab.1.right" timestamp="1605045084948">
       <screen x="1680" y="-367" width="2560" height="1417" />
     </state>
-    <state width="2518" height="468" key="GridCell.Tab.1.right/1680.-367.2560.1417/0.23.1680.1027@1680.-367.2560.1417" timestamp="1604878487098" />
+    <state width="2518" height="468" key="GridCell.Tab.1.right/1680.-367.2560.1417/0.23.1680.1027@1680.-367.2560.1417" timestamp="1605045084948" />
     <state width="1280" height="708" key="XDebugger.FullValuePopup" timestamp="1604877510165">
       <screen x="1680" y="-367" width="2560" height="1417" />
     </state>
@@ -126,28 +128,13 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/ex2.py</url>
-          <line>580</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/ex2.py</url>
-          <line>582</line>
-          <option name="timeStamp" value="36" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/ex2.py</url>
-          <line>583</line>
-          <option name="timeStamp" value="37" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/ex2.py</url>
-          <line>375</line>
-          <option name="timeStamp" value="45" />
+          <line>324</line>
+          <option name="timeStamp" value="48" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Exercise_2$ex2.coverage" NAME="ex2 Coverage Results" MODIFIED="1604941769941" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Exercise_2$ex2.coverage" NAME="ex2 Coverage Results" MODIFIED="1605045084926" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

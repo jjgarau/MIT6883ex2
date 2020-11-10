@@ -14,6 +14,8 @@ from dgl.nn import GraphConv
 
 from util import setup, check_match, sub_nP, evaluate_prefix_expression
 
+from transformers import T5Model
+
 
 # CONVERTING INPUT TO TENSORS
 def tensorize_data(data):
@@ -293,8 +295,8 @@ class Model(nn.Module):
             You may specify layer weights to freeze during finetuning by modifying the freeze_layers global variable
             """
             ### Your code here ###
-            self.t5_encoder = None
-            raise NotImplementedError
+            self.t5_model = T5Model.from_pretrained(f't5-{use_t5}')
+            self.t5_encoder = self.t5_model.encoder
 
             for i_layer, block in enumerate(self.t5_encoder.block):
                 if i_layer in freeze_layers:
@@ -327,7 +329,7 @@ class Model(nn.Module):
             the embeddings internally
             """
             ### Your code here ###
-            raise NotImplementedError
+            h = self.t5_encoder(in_idxs_pad)[0]
         else:
             x = self.in_embed(in_idxs_pad)  # (n_batch, n_batch_max_in, n_hid)
             h = x + self.pos_embed(torch.arange(x.size(1), device=x.device))
@@ -553,7 +555,7 @@ def predict(d, model, beam_size=5, n_max_out=45):
 
 
 if __name__ == "__main__":
-    use_t5 = None  # Value should be None, 'small', or 'base'
+    use_t5 = 'small'  # Value should be None, 'small', or 'base'
     model_save_dir = f'models/{use_t5 or "custom"}'
     os.makedirs(model_save_dir, exist_ok=True)
 
@@ -574,7 +576,7 @@ if __name__ == "__main__":
         n_hid = 512
         n_k = n_v = 64
         n_head = 8
-        weight_decay = 0.0001  # 0
+        weight_decay = 0
     device = 'cuda:0' if torch.cuda.is_available() else 'cpu'
 
     train_data, val_data, in_vocab, out_vocab, n_max_nP, t5_model = setup(use_t5)
