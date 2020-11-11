@@ -555,7 +555,7 @@ def predict(d, model, beam_size=5, n_max_out=45):
 
 
 if __name__ == "__main__":
-    use_t5 = 'base'  # Value should be None, 'small', or 'base', or 'large', or '3B'
+    use_t5 = 'small'  # Value should be None, 'small', or 'base', or 'large', or '3B'
     model_save_dir = f'models/{use_t5 or "custom"}'
     os.makedirs(model_save_dir, exist_ok=True)
 
@@ -568,7 +568,7 @@ if __name__ == "__main__":
     if use_t5:
         # T5 hyperparameters
         freeze_layers = []
-        weight_decay = 1e-5
+        weight_decay = 1e-4  # 1e-5
         n_hid = dict(small=512, base=768)[use_t5]  # Do not modify unless you want to try t5-large
     else:
         # Custom transformer hyperparameters
