@@ -568,7 +568,7 @@ if __name__ == "__main__":
     if use_t5:
         # T5 hyperparameters
         freeze_layers = []
-        weight_decay = 1e-4  # 1e-5
+        weight_decay = 1e-5
         n_hid = dict(small=512, base=768)[use_t5]  # Do not modify unless you want to try t5-large
     else:
         # Custom transformer hyperparameters
@@ -633,6 +633,7 @@ if __name__ == "__main__":
         model = Model()
         model.load_state_dict(torch.load(f'models/{use_t5 or "custom"}/model-{eval_epoch}.pth'))
         tensorize_data(test_data)
+        model.to(device)
 
         with torch.no_grad():
             for d in tqdm(test_data):  # There's no quadratics in the test_data, fortunately
