@@ -629,6 +629,9 @@ if __name__ == "__main__":
     parser.add_argument('--n_head', type=int, default=8)
     parser.add_argument('--weight_decay', type=float, default=0.0)
     parser.add_argument('--cuda_device', type=int, default=0)
+    parser.add_argument('--n_batch', type=int, default=64)
+    parser.add_argument('--learning_rate', type=float, default=1e-3)
+    parser.add_argument('--n_epochs', type=int, default=100)
     args = parser.parse_args()
 
     # use_t5 = 'small'  # Value should be None, 'small', or 'base', or 'large', or '3B'
@@ -640,9 +643,9 @@ if __name__ == "__main__":
     # IMPORTANT NOTE: if you change some of these hyperparameters during training,
     # you will also need to change them during prediction (see next section)
     n_max_in = 100
-    n_epochs = 100
-    n_batch = 64
-    learning_rate = 1e-3
+    n_epochs = args.n_epochs
+    n_batch = args.n_batch
+    learning_rate = args.learnidng_reate
     if use_t5:
         # T5 hyperparameters
         freeze_layers = []
