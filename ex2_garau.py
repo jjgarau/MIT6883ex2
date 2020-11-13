@@ -169,10 +169,13 @@ class GCNBranch(nn.Module):
         Note: your should call dgl.nn.GraphConv with allow_zero_in_degree=True
         """
         ### Your code here ###
-        self.gc1 = GraphConv(n_hid_in, n_hid_in, allow_zero_in_degree=True)
-        self.act = nn.ReLU()
-        self.drop = nn.Dropout(p=dropout)
-        self.gc2 = GraphConv(n_hid_in, n_hid_out, allow_zero_in_degree=True)
+        # self.gc1 = GraphConv(n_hid_in, n_hid_in, allow_zero_in_degree=True)
+        # self.act = nn.ReLU()
+        # self.drop = nn.Dropout(p=dropout)
+        # self.gc2 = GraphConv(n_hid_in, n_hid_out, allow_zero_in_degree=True)
+        self.gc1 = dgl.nn.SAGEConv(n_hid_in, n_hid_in, aggregator_type='gcn', feat_drop=dropout)
+        self.gc2 = dgl.nn.SAGEConv(n_hid_in, n_hid_in, aggregator_type='gcn', feat_drop=dropout)
+        self.gc3 = GraphConv(n_hid_in, n_hid_out, allow_zero_in_degree=True)
 
 
     def forward(self, x, graph):
@@ -180,11 +183,15 @@ class GCNBranch(nn.Module):
         Forward pass of your defined branch above
         """
         ### Your code here ###
+        # out = self.gc1(graph, x)
+        # out = self.act(out)
+        # out = self.drop(out)
+        # out = self.gc2(graph, out)
         out = self.gc1(graph, x)
-        out = self.act(out)
-        out = self.drop(out)
         out = self.gc2(graph, out)
+        out = self.gc3(graph, out)
         return out
+
 
 
 class GCN(nn.Module):
@@ -206,10 +213,9 @@ class GCN(nn.Module):
 
     def forward(self, h, gt_graph, attr_graph, gt_low_graph):
         x = h.reshape(-1, n_hid)
-        graphs = [gt_graph, gt_graph, attr_graph, attr_graph, gt_low_graph, gt_low_graph, gt_graph, attr_graph]
+        graphs = [gt_graph, gt_graph, attr_graph, attr_graph, gt_graph, gt_graph, attr_graph, attr_graph]
         x = torch.cat([branch(x, g) for branch, g in zip(self.branches, graphs)], dim=-1).view_as(h)
-        # x = h + self.layer_norm(x)
-        x = x + self.layer_norm(x)
+        x = h + self.layer_norm(x)
         # return x + self.feed_forward(x)
         return x + self.layer_norm(self.feed_forward(x))
 
