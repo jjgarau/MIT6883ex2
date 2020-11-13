@@ -42,6 +42,10 @@ def tensorize_data(data):
         # Graph edges for constructing the DGL graph later
         d['qcomp_edges'] = get_quantity_comparison_edges(d)
         d['qcell_edges'] = get_quantity_cell_edges(d)
+        d['qcomp_add_edges'] = get_operation_edges(d, lambda x, y: x + y)
+        d['qcomp_sub_edges'] = get_operation_edges(d, lambda x, y: x - y)
+        d['qcomp_mult_edges'] = get_operation_edges(d, lambda x, y: x * y)
+        d['qcomp_div_edges'] = get_operation_edges(d, lambda x, y: x / y)
 
 
 def get_quantity_comparison_edges(d):
@@ -92,6 +96,28 @@ def get_quantity_cell_edges(d):
     ### Your code here ###
     ids = torch.nonzero(adj_matrix)
     return ids[:, 0], ids[:, 1]
+
+
+def get_operation_edges(d, fun):
+    quants = [float(x) for x in d['nP']]
+    quant_positions = d['nP_positions']
+    assert max(quant_positions) < d['n_in']
+    adj_matrix = 2 * torch.eye(d['n_in'], dtype=int)
+    for x, x_pos in zip(quants, quant_positions):
+        for y, y_pos in zip(quants, quant_positions):
+            for z, z_pos in zip(quants, quant_positions):
+                if fun(x, y) > z and x_pos != y_pos and x_pos != z_pos and y_pos != z_pos:
+                    adj_matrix[x_pos, z_pos] += 1
+                    adj_matrix[y_pos, z_pos] += 1
+    adj_matrix = (adj_matrix / 2).type(torch.int)
+    sources, ends = [], []
+    for i in range(d['n_in']):
+        for j in range(d['n_in']):
+            for _ in range(adj_matrix[i, j].item()):
+                sources.append(i)
+                ends.append(j)
+
+    return torch.Tensor(sources).type(torch.int), torch.Tensor(ends).type(torch.int)
 
 
 # MODEL
@@ -198,9 +224,10 @@ class GCN(nn.Module):
         )
         self.layer_norm = nn.LayerNorm(n_hid)
 
-    def forward(self, h, gt_graph, attr_graph):
+    def forward(self, h, gt_graph, attr_graph, qcomp_operation_graphs):
+        a, b, c, d = qcomp_operation_graphs
         x = h.reshape(-1, n_hid)
-        graphs = [gt_graph, gt_graph, attr_graph, attr_graph, gt_graph, gt_graph, attr_graph, attr_graph]
+        graphs = [gt_graph, gt_graph, attr_graph, attr_graph, a, b, c, d]
         x = torch.cat([branch(x, g) for branch, g in zip(self.branches, graphs)], dim=-1).view_as(h)
         x = h + self.layer_norm(x)
         # return x + self.feed_forward(x)
@@ -330,7 +357,7 @@ class Model(nn.Module):
         if type(m) in [nn.Embedding]:
             nn.init.normal_(m.weight, 0, 0.1)
 
-    def encode(self, in_idxs, n_in, gt_graph, attr_graph, in_mask=None):
+    def encode(self, in_idxs, n_in, gt_graph, attr_graph, qcomp_operation_graphs, in_mask=None):
         in_idxs_pad = F.pad(in_idxs, (1, 0), value=in_vocab.pad)
         if use_t5:
             """
@@ -346,7 +373,7 @@ class Model(nn.Module):
             for layer in self.transformer_layers:
                 h = layer(h, mask=in_mask)
         zg, h = h[:, 0], h[:, 1:]
-        zbar = self.gcn(h, gt_graph, attr_graph)
+        zbar = self.gcn(h, gt_graph, attr_graph, qcomp_operation_graphs)
         return zbar, zg
 
 
@@ -377,6 +404,7 @@ def train(batch, model, opt):
     nP_out_mask = torch.stack([d['nP_out_mask'] for d in batch]).to(device)
 
     qcomp_graph, qcell_graph = [], []
+    qcomp_add_graph, qcomp_sub_graph, qcomp_mult_graph, qcomp_div_graph = [], [], [], []
     for d in batch:
         """
         Create qcomp_graph and qcell_graph from d['qcomp_edges'] and d['qcell_edges'] by calling dgl.graph
@@ -391,13 +419,29 @@ def train(batch, model, opt):
         qcomp_graph.append(qcomp_graph_i)
         qcell_graph.append(qcell_graph_i)
 
+        qcomp_add_graph_i = dgl.graph(d['qcomp_add_edges'], num_nodes=max(n_in), device=device)
+        qcomp_sub_graph_i = dgl.graph(d['qcomp_sub_edges'], num_nodes=max(n_in), device=device)
+        qcomp_mult_graph_i = dgl.graph(d['qcomp_mult_edges'], num_nodes=max(n_in), device=device)
+        qcomp_div_graph_i = dgl.graph(d['qcomp_div_edges'], num_nodes=max(n_in), device=device)
+
+        qcomp_add_graph.append(qcomp_add_graph_i)
+        qcomp_sub_graph.append(qcomp_sub_graph_i)
+        qcomp_mult_graph.append(qcomp_mult_graph_i)
+        qcomp_div_graph.append(qcomp_div_graph_i)
+
     qcomp_graph = dgl.batch(qcomp_graph)
     qcell_graph = dgl.batch(qcell_graph)
+
+    qcomp_add_graph = dgl.batch(qcomp_add_graph)
+    qcomp_sub_graph = dgl.batch(qcomp_sub_graph)
+    qcomp_mult_graph = dgl.batch(qcomp_mult_graph)
+    qcomp_div_graph = dgl.batch(qcomp_div_graph)
+    qcomp_operation_graphs = (qcomp_add_graph, qcomp_sub_graph, qcomp_mult_graph, qcomp_div_graph)
 
     label = pad([d['out_idxs'] for d in batch], out_vocab.pad)
     nP_candidates = [d['nP_candidates'] for d in batch]
 
-    zbar, qroot = model.encode(in_idxs, n_in, qcomp_graph, qcell_graph, in_mask=None)
+    zbar, qroot = model.encode(in_idxs, n_in, qcomp_graph, qcell_graph, qcomp_operation_graphs, in_mask=None)
     z_nP = zbar.new_zeros((n_batch, n_max_nP, n_hid))
     z_nP[nP_out_mask] = zbar[nP_in_mask]
 
@@ -509,7 +553,13 @@ def predict(d, model, beam_size=5, n_max_out=45):
     qcomp_graph = dgl.graph(d['qcomp_edges'], device=device)
     qcell_graph = dgl.graph(d['qcell_edges'], device=device)
 
-    zbar, qroot = model.encode(in_idxs, [d['n_in']], qcomp_graph, qcell_graph)
+    qcomp_add_graph = dgl.graph(d['qcomp_add_edges'], device=device)
+    qcomp_sub_graph = dgl.graph(d['qcomp_sub_edges'], device=device)
+    qcomp_mult_graph = dgl.graph(d['qcomp_mult_edges'], device=device)
+    qcomp_div_graph = dgl.graph(d['qcomp_div_edges'], device=device)
+    qcomp_operation_graphs = (qcomp_add_graph, qcomp_sub_graph, qcomp_mult_graph, qcomp_div_graph)
+
+    zbar, qroot = model.encode(in_idxs, [d['n_in']], qcomp_graph, qcell_graph, qcomp_operation_graphs)
     z_nP = zbar[:, d['nP_positions']]
 
     decoder = model.decoder
