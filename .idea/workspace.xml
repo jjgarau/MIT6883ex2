@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4557fe35-3343-49f3-b3b1-4e6a792dbef5" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ex2_garau.py" beforeDir="false" afterPath="$PROJECT_DIR$/ex2_garau.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -96,7 +97,7 @@
       <option name="presentableId" value="Default" />
       <updated>1604849817065</updated>
       <workItem from="1604849826801" duration="21561000" />
-      <workItem from="1605217745244" duration="2293000" />
+      <workItem from="1605217745244" duration="4264000" />
     </task>
     <servers />
   </component>
@@ -108,22 +109,26 @@
       <screen x="1680" y="-367" width="2560" height="1417" />
     </state>
     <state x="2747" y="103" key="FileChooserDialogImpl/1680.-367.2560.1417/0.23.1680.1027@1680.-367.2560.1417" timestamp="1604849933266" />
-    <state width="2518" height="276" key="GridCell.Tab.0.bottom" timestamp="1605229596033">
-      <screen x="1680" y="-367" width="2560" height="1417" />
+    <state width="1878" height="174" key="GridCell.Tab.0.bottom" timestamp="1605283490111">
+      <screen x="1680" y="23" width="1920" height="1057" />
     </state>
     <state width="2518" height="276" key="GridCell.Tab.0.bottom/1680.-367.2560.1417/0.23.1680.1027@1680.-367.2560.1417" timestamp="1605229596033" />
-    <state width="2518" height="276" key="GridCell.Tab.0.center" timestamp="1605229596031">
-      <screen x="1680" y="-367" width="2560" height="1417" />
+    <state width="1878" height="174" key="GridCell.Tab.0.bottom/1680.23.1920.1057/0.23.1680.1027@1680.23.1920.1057" timestamp="1605283490111" />
+    <state width="1878" height="174" key="GridCell.Tab.0.center" timestamp="1605283490110">
+      <screen x="1680" y="23" width="1920" height="1057" />
     </state>
     <state width="2518" height="276" key="GridCell.Tab.0.center/1680.-367.2560.1417/0.23.1680.1027@1680.-367.2560.1417" timestamp="1605229596031" />
-    <state width="2518" height="276" key="GridCell.Tab.0.left" timestamp="1605229596031">
-      <screen x="1680" y="-367" width="2560" height="1417" />
+    <state width="1878" height="174" key="GridCell.Tab.0.center/1680.23.1920.1057/0.23.1680.1027@1680.23.1920.1057" timestamp="1605283490110" />
+    <state width="1878" height="174" key="GridCell.Tab.0.left" timestamp="1605283490109">
+      <screen x="1680" y="23" width="1920" height="1057" />
     </state>
     <state width="2518" height="276" key="GridCell.Tab.0.left/1680.-367.2560.1417/0.23.1680.1027@1680.-367.2560.1417" timestamp="1605229596031" />
-    <state width="2518" height="276" key="GridCell.Tab.0.right" timestamp="1605229596032">
-      <screen x="1680" y="-367" width="2560" height="1417" />
+    <state width="1878" height="174" key="GridCell.Tab.0.left/1680.23.1920.1057/0.23.1680.1027@1680.23.1920.1057" timestamp="1605283490109" />
+    <state width="1878" height="174" key="GridCell.Tab.0.right" timestamp="1605283490110">
+      <screen x="1680" y="23" width="1920" height="1057" />
     </state>
     <state width="2518" height="276" key="GridCell.Tab.0.right/1680.-367.2560.1417/0.23.1680.1027@1680.-367.2560.1417" timestamp="1605229596032" />
+    <state width="1878" height="174" key="GridCell.Tab.0.right/1680.23.1920.1057/0.23.1680.1027@1680.23.1920.1057" timestamp="1605283490110" />
     <state width="2518" height="419" key="GridCell.Tab.1.bottom" timestamp="1605229102986">
       <screen x="1680" y="-367" width="2560" height="1417" />
     </state>
@@ -153,16 +158,11 @@
           <line>324</line>
           <option name="timeStamp" value="48" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/ex2_garau.py</url>
-          <line>209</line>
-          <option name="timeStamp" value="57" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Exercise_2$ex2_garau.coverage" NAME="ex2_garau Coverage Results" MODIFIED="1605229596020" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Exercise_2$ex2_garau.coverage" NAME="ex2_garau Coverage Results" MODIFIED="1605283490104" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Exercise_2$ex2.coverage" NAME="ex2 Coverage Results" MODIFIED="1605227825885" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

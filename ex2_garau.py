@@ -208,8 +208,10 @@ class GCN(nn.Module):
         x = h.reshape(-1, n_hid)
         graphs = [gt_graph, gt_graph, attr_graph, attr_graph, gt_low_graph, gt_low_graph, gt_graph, attr_graph]
         x = torch.cat([branch(x, g) for branch, g in zip(self.branches, graphs)], dim=-1).view_as(h)
-        x = h + self.layer_norm(x)
-        return x + self.feed_forward(x)
+        # x = h + self.layer_norm(x)
+        x = x + self.layer_norm(x)
+        # return x + self.feed_forward(x)
+        return x + self.layer_norm(self.feed_forward(x))
 
 
 class Gate(nn.Module):
