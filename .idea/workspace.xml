@@ -97,7 +97,7 @@
       <option name="presentableId" value="Default" />
       <updated>1604849817065</updated>
       <workItem from="1604849826801" duration="21561000" />
-      <workItem from="1605217745244" duration="11363000" />
+      <workItem from="1605217745244" duration="12101000" />
     </task>
     <servers />
   </component>
@@ -164,12 +164,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/ex2_garau.py</url>
-          <line>230</line>
+          <line>234</line>
           <option name="timeStamp" value="61" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/ex2_garau.py</url>
-          <line>231</line>
+          <line>235</line>
           <option name="timeStamp" value="65" />
         </line-breakpoint>
       </breakpoints>

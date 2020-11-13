@@ -45,7 +45,7 @@ def tensorize_data(data):
         d['qcomp_add_edges'] = get_operation_edges(d, lambda x, y: x + y)
         d['qcomp_sub_edges'] = get_operation_edges(d, lambda x, y: x - y)
         d['qcomp_mult_edges'] = get_operation_edges(d, lambda x, y: x * y)
-        d['qcomp_div_edges'] = get_operation_edges(d, lambda x, y: x / y)
+        d['qcomp_div_edges'] = get_operation_edges(d, lambda x, y: x / (y + 0.0001))
 
 
 def get_quantity_comparison_edges(d):
@@ -214,6 +214,7 @@ class GCN(nn.Module):
 
     def __init__(self, n_head=8, dropout=0.3):
         super().__init__()
+        self.n_head = n_head
         self.branches = nn.ModuleList(GCNBranch(n_hid, n_hid // n_head, dropout) for _ in range(n_head))
 
         self.feed_forward = nn.Sequential(
@@ -227,7 +228,10 @@ class GCN(nn.Module):
     def forward(self, h, gt_graph, attr_graph, qcomp_operation_graphs):
         a, b, c, d = qcomp_operation_graphs
         x = h.reshape(-1, n_hid)
-        graphs = [gt_graph, gt_graph, attr_graph, attr_graph, a, b, c, d]
+        if self.n_head == 16:
+            graphs = [gt_graph, gt_graph, attr_graph, attr_graph, a, b, c, d, a, b, c, d, gt_graph, gt_graph, attr_graph, attr_graph]
+        else:
+            graphs = [gt_graph, gt_graph, attr_graph, attr_graph, a, b, c, d]
         x = torch.cat([branch(x, g) for branch, g in zip(self.branches, graphs)], dim=-1).view_as(h)
         x = h + self.layer_norm(x)
         # return x + self.feed_forward(x)
@@ -346,7 +350,7 @@ class Model(nn.Module):
             self.pos_embed = nn.Embedding(1 + n_max_in, n_hid)  # Use the first position as global vector
             self.transformer_layers = nn.ModuleList(TransformerBlock() for _ in range(n_layers))
 
-        self.gcn = GCN()
+        self.gcn = GCN(n_head=args.n_head)
 
         self.decoder = TreeDecoder()
 
@@ -625,6 +629,7 @@ if __name__ == "__main__":
     parser.add_argument('--n_head', type=int, default=8)
     parser.add_argument('--weight_decay', type=float, default=0.0)
     parser.add_argument('--cuda_device', type=int, default=0)
+    parser.add_argument('--n_head', type=int, default=8)
     args = parser.parse_args()
 
     # use_t5 = 'small'  # Value should be None, 'small', or 'base', or 'large', or '3B'
