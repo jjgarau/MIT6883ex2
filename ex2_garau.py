@@ -16,6 +16,8 @@ from util import setup, check_match, sub_nP, evaluate_prefix_expression
 
 from transformers import T5Model
 
+import argparse
+
 
 # CONVERTING INPUT TO TENSORS
 def tensorize_data(data):
@@ -513,7 +515,7 @@ def predict(d, model, beam_size=5, n_max_out=45):
     ### Your code here ###
     qcomp_graph = dgl.graph(d['qcomp_edges'], device=device)
     qcell_graph = dgl.graph(d['qcell_edges'], device=device)
-    qcomp_low_graph = dgl.graph(d['qcomp_low_edges'], device=device)
+    qcomp_low_graph = dgl.graph(d['qcomp_edges_low'], device=device)
 
     zbar, qroot = model.encode(in_idxs, [d['n_in']], qcomp_graph, qcell_graph, qcomp_low_graph)
     z_nP = zbar[:, d['nP_positions']]
@@ -572,7 +574,20 @@ def predict(d, model, beam_size=5, n_max_out=45):
 
 
 if __name__ == "__main__":
-    use_t5 = 'small'  # Value should be None, 'small', or 'base', or 'large', or '3B'
+
+    parser = argparse.ArgumentParser(description="Main script for running LPG")
+    parser.add_argument('--use_t5', type=str, default='small')
+    parser.add_argument('--n_hid', type=int, default=512)
+    parser.add_argument('--n_layers', type=int, default=3)
+    parser.add_argument('--n_k', type=int, default=64)
+    parser.add_argument('--n_head', type=int, default=8)
+    parser.add_argument('--weight_decay', type=float, default=0.0)
+    parser.add_argument('--cuda_device', type=int, default=0)
+    args = parser.parse_args()
+
+    # use_t5 = 'small'  # Value should be None, 'small', or 'base', or 'large', or '3B'
+
+    use_t5 = args.use_t5 if args.use_t5 in ['small', 'base'] else None
     model_save_dir = f'models/{use_t5 or "custom"}'
     os.makedirs(model_save_dir, exist_ok=True)
 
@@ -589,12 +604,18 @@ if __name__ == "__main__":
         n_hid = dict(small=512, base=768)[use_t5]  # Do not modify unless you want to try t5-large
     else:
         # Custom transformer hyperparameters
-        n_layers = 3
-        n_hid = 512
-        n_k = n_v = 64
-        n_head = 8
-        weight_decay = 0
-    device = 'cuda:1' if torch.cuda.is_available() else 'cpu'
+        # n_layers = 3
+        # n_hid = 512
+        # n_k = n_v = 64
+        # n_head = 8
+        # weight_decay = 0
+        n_layers = args.n_layers
+        n_hid = args.n_hid
+        n_k = n_v = args.n_k
+        n_head = args.n_head
+        weight_decay = args.weight_decay
+
+    device = 'cuda:' + str(args.cuda_device) if torch.cuda.is_available() else 'cpu'
 
     train_data, val_data, in_vocab, out_vocab, n_max_nP, t5_model = setup(use_t5)
     tensorize_data(itertools.chain(train_data, val_data))
