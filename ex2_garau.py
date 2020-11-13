@@ -629,7 +629,6 @@ if __name__ == "__main__":
     parser.add_argument('--n_head', type=int, default=8)
     parser.add_argument('--weight_decay', type=float, default=0.0)
     parser.add_argument('--cuda_device', type=int, default=0)
-    parser.add_argument('--n_head', type=int, default=8)
     args = parser.parse_args()
 
     # use_t5 = 'small'  # Value should be None, 'small', or 'base', or 'large', or '3B'
