@@ -645,7 +645,7 @@ if __name__ == "__main__":
     n_max_in = 100
     n_epochs = args.n_epochs
     n_batch = args.n_batch
-    learning_rate = args.learnidng_reate
+    learning_rate = args.learning_reate
     if use_t5:
         # T5 hyperparameters
         freeze_layers = []
