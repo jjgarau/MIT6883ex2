@@ -42,7 +42,6 @@ def tensorize_data(data):
         # Graph edges for constructing the DGL graph later
         d['qcomp_edges'] = get_quantity_comparison_edges(d)
         d['qcell_edges'] = get_quantity_cell_edges(d)
-        d['qcomp_edges_low'] = get_quantity_comparison_edges_low(d)
 
 
 def get_quantity_comparison_edges(d):
@@ -62,18 +61,6 @@ def get_quantity_comparison_edges(d):
     Hint: check out the 'nonzero' function
     """
     ### Your code here ###
-    ids = torch.nonzero(adj_matrix)
-    return ids[:, 0], ids[:, 1]
-
-
-def get_quantity_comparison_edges_low(d):
-    quants = [float(x) for x in d['nP']]
-    quant_positions = d['nP_positions']
-    assert max(quant_positions) < d['n_in']
-    adj_matrix = torch.eye(d['n_in'], dtype=np.bool)
-    for x, x_pos in zip(quants, quant_positions):
-        for y, y_pos in zip(quants, quant_positions):
-            adj_matrix[x_pos, y_pos] |= x < y
     ids = torch.nonzero(adj_matrix)
     return ids[:, 0], ids[:, 1]
 
@@ -211,7 +198,7 @@ class GCN(nn.Module):
         )
         self.layer_norm = nn.LayerNorm(n_hid)
 
-    def forward(self, h, gt_graph, attr_graph, gt_low_graph):
+    def forward(self, h, gt_graph, attr_graph):
         x = h.reshape(-1, n_hid)
         graphs = [gt_graph, gt_graph, attr_graph, attr_graph, gt_graph, gt_graph, attr_graph, attr_graph]
         x = torch.cat([branch(x, g) for branch, g in zip(self.branches, graphs)], dim=-1).view_as(h)
@@ -343,7 +330,7 @@ class Model(nn.Module):
         if type(m) in [nn.Embedding]:
             nn.init.normal_(m.weight, 0, 0.1)
 
-    def encode(self, in_idxs, n_in, gt_graph, attr_graph, gt_low_graph, in_mask=None):
+    def encode(self, in_idxs, n_in, gt_graph, attr_graph, in_mask=None):
         in_idxs_pad = F.pad(in_idxs, (1, 0), value=in_vocab.pad)
         if use_t5:
             """
@@ -359,7 +346,7 @@ class Model(nn.Module):
             for layer in self.transformer_layers:
                 h = layer(h, mask=in_mask)
         zg, h = h[:, 0], h[:, 1:]
-        zbar = self.gcn(h, gt_graph, attr_graph, gt_low_graph)
+        zbar = self.gcn(h, gt_graph, attr_graph)
         return zbar, zg
 
 
@@ -389,7 +376,7 @@ def train(batch, model, opt):
     nP_in_mask = pad([d['nP_in_mask'] for d in batch], False).to(device)
     nP_out_mask = torch.stack([d['nP_out_mask'] for d in batch]).to(device)
 
-    qcomp_graph, qcell_graph, qcomp_low_graph = [], [], []
+    qcomp_graph, qcell_graph = [], []
     for d in batch:
         """
         Create qcomp_graph and qcell_graph from d['qcomp_edges'] and d['qcell_edges'] by calling dgl.graph
@@ -400,19 +387,17 @@ def train(batch, model, opt):
         ### Your code here ###
         qcomp_graph_i = dgl.graph(d['qcomp_edges'], num_nodes=max(n_in), device=device)
         qcell_graph_i = dgl.graph(d['qcell_edges'], num_nodes=max(n_in), device=device)
-        qcomp_low_graph_i = dgl.graph(d['qcomp_edges_low'], num_nodes=max(n_in), device=device)
 
         qcomp_graph.append(qcomp_graph_i)
         qcell_graph.append(qcell_graph_i)
-        qcomp_low_graph.append(qcomp_low_graph_i)
+
     qcomp_graph = dgl.batch(qcomp_graph)
     qcell_graph = dgl.batch(qcell_graph)
-    qcomp_low_graph = dgl.batch(qcomp_low_graph)
 
     label = pad([d['out_idxs'] for d in batch], out_vocab.pad)
     nP_candidates = [d['nP_candidates'] for d in batch]
 
-    zbar, qroot = model.encode(in_idxs, n_in, qcomp_graph, qcell_graph, qcomp_low_graph, in_mask=None)
+    zbar, qroot = model.encode(in_idxs, n_in, qcomp_graph, qcell_graph, in_mask=None)
     z_nP = zbar.new_zeros((n_batch, n_max_nP, n_hid))
     z_nP[nP_out_mask] = zbar[nP_in_mask]
 
@@ -523,9 +508,8 @@ def predict(d, model, beam_size=5, n_max_out=45):
     ### Your code here ###
     qcomp_graph = dgl.graph(d['qcomp_edges'], device=device)
     qcell_graph = dgl.graph(d['qcell_edges'], device=device)
-    qcomp_low_graph = dgl.graph(d['qcomp_edges_low'], device=device)
 
-    zbar, qroot = model.encode(in_idxs, [d['n_in']], qcomp_graph, qcell_graph, qcomp_low_graph)
+    zbar, qroot = model.encode(in_idxs, [d['n_in']], qcomp_graph, qcell_graph)
     z_nP = zbar[:, d['nP_positions']]
 
     decoder = model.decoder
