@@ -1,3 +1,4 @@
 models/*
 .idea/*
 *.xml
+predictions/*
