@@ -640,7 +640,7 @@ if __name__ == "__main__":
 
     # use_t5 = 'small'  # Value should be None, 'small', or 'base', or 'large', or '3B'
 
-    use_t5 = args.use_t5 if args.use_t5 in ['small', 'base'] else None
+    use_t5 = args.use_t5 if args.use_t5 in ['small', 'base', 'large', '3B'] else None
     model_save_dir = f'models/{use_t5 or "custom"}'
     os.makedirs(model_save_dir, exist_ok=True)
 
