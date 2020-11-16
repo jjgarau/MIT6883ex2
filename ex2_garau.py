@@ -641,6 +641,7 @@ if __name__ == "__main__":
     parser.add_argument('--n_epochs', type=int, default=100)
     parser.add_argument('--eval_epoch', type=int, default=100)
     parser.add_argument('--use_cpu', action='store_true')
+    parser.add_argument('--load_model', action='store_true')
     args = parser.parse_args()
 
     # use_t5 = 'small'  # Value should be None, 'small', or 'base', or 'large', or '3B'
@@ -682,6 +683,9 @@ if __name__ == "__main__":
     tensorize_data(itertools.chain(train_data, val_data))
 
     model = Model()
+    if args.load_model:
+        eval_epoch = args.eval_epoch
+        model.load_state_dict(torch.load(f'models/{use_t5 or "custom"}/model-{eval_epoch}.pth'))
     opt = torch.optim.Adam(model.parameters(), lr=learning_rate, weight_decay=weight_decay)
     scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(opt, n_epochs)
     model.to(device)
