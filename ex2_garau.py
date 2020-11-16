@@ -229,8 +229,8 @@ class GCN(nn.Module):
         a, b, c, d = qcomp_operation_graphs
         x = h.reshape(-1, n_hid)
         if self.n_head == 16:
-            graphs = [gt_graph, gt_graph, attr_graph, attr_graph, a, a, b, b, gt_graph, gt_graph, attr_graph, attr_graph, a, a, b, b]
-            # graphs = [gt_graph, gt_graph, attr_graph, attr_graph, gt_graph, gt_graph, attr_graph, attr_graph, gt_graph, gt_graph, attr_graph, attr_graph, gt_graph, gt_graph, attr_graph, attr_graph]
+            # graphs = [gt_graph, gt_graph, attr_graph, attr_graph, a, a, b, b, gt_graph, gt_graph, attr_graph, attr_graph, a, a, b, b]
+            graphs = [gt_graph, gt_graph, attr_graph, attr_graph, gt_graph, gt_graph, attr_graph, attr_graph, gt_graph, gt_graph, attr_graph, attr_graph, gt_graph, gt_graph, attr_graph, attr_graph]
         elif self.n_head == 8:
             # graphs = [gt_graph, gt_graph, attr_graph, attr_graph, a, a, b, b]
             graphs = [gt_graph, gt_graph, attr_graph, attr_graph, gt_graph, gt_graph, attr_graph, attr_graph]
