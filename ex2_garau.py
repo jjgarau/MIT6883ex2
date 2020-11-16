@@ -654,7 +654,7 @@ if __name__ == "__main__":
         # T5 hyperparameters
         freeze_layers = []
         weight_decay = 1e-5
-        n_hid = dict(small=512, base=768)[use_t5]  # Do not modify unless you want to try t5-large
+        n_hid = dict(small=512, base=768, large=1024)[use_t5]  # Do not modify unless you want to try t5-large
     else:
         # Custom transformer hyperparameters
         # n_layers = 3
