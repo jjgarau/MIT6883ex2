@@ -644,7 +644,7 @@ if __name__ == "__main__":
 
     # use_t5 = 'small'  # Value should be None, 'small', or 'base', or 'large', or '3B'
 
-    use_t5 = args.use_t5 if args.use_t5 in ['small', 'base', 'large', '3B'] else None
+    use_t5 = args.use_t5 if args.use_t5 in ['small', 'base', 'large', '3b'] else None
     model_save_dir = f'models/{use_t5 or "custom"}'
     os.makedirs(model_save_dir, exist_ok=True)
 
@@ -658,7 +658,7 @@ if __name__ == "__main__":
         # T5 hyperparameters
         freeze_layers = []
         weight_decay = 1e-5
-        if use_t5 == '3B':
+        if use_t5 == '3b':
             n_hid = 1024
         else:
             n_hid = dict(small=512, base=768, large=1024)[use_t5]  # Do not modify unless you want to try t5-large
