@@ -639,6 +639,7 @@ if __name__ == "__main__":
     parser.add_argument('--learning_rate', type=float, default=1e-3)
     parser.add_argument('--n_epochs', type=int, default=100)
     parser.add_argument('--eval_epoch', type=int, default=100)
+    parser.add_argument('--use_cpu', action='store_true')
     args = parser.parse_args()
 
     # use_t5 = 'small'  # Value should be None, 'small', or 'base', or 'large', or '3B'
@@ -671,7 +672,7 @@ if __name__ == "__main__":
         n_head = args.n_head
         weight_decay = args.weight_decay
 
-    device = 'cuda:' + str(args.cuda_device) if torch.cuda.is_available() else 'cpu'
+    device = 'cuda:' + str(args.cuda_device) if torch.cuda.is_available() and not args.use_cpu else 'cpu'
 
     train_data, val_data, in_vocab, out_vocab, n_max_nP, t5_model = setup(use_t5)
     tensorize_data(itertools.chain(train_data, val_data))
