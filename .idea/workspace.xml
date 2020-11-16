@@ -4,7 +4,6 @@
     <list default="true" id="4557fe35-3343-49f3-b3b1-4e6a792dbef5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ex2_garau.py" beforeDir="false" afterPath="$PROJECT_DIR$/ex2_garau.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/postproc.py" beforeDir="false" afterPath="$PROJECT_DIR$/postproc.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -121,7 +120,7 @@
       <option name="presentableId" value="Default" />
       <updated>1604849817065</updated>
       <workItem from="1604849826801" duration="21561000" />
-      <workItem from="1605217745244" duration="16859000" />
+      <workItem from="1605217745244" duration="17832000" />
     </task>
     <servers />
   </component>
@@ -196,12 +195,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/ex2_garau.py</url>
-          <line>238</line>
+          <line>240</line>
           <option name="timeStamp" value="61" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/ex2_garau.py</url>
-          <line>239</line>
+          <line>241</line>
           <option name="timeStamp" value="65" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">

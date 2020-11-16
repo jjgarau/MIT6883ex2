@@ -638,6 +638,7 @@ if __name__ == "__main__":
     parser.add_argument('--n_batch', type=int, default=64)
     parser.add_argument('--learning_rate', type=float, default=1e-3)
     parser.add_argument('--n_epochs', type=int, default=100)
+    parser.add_argument('--eval_epoch', type=int, default=100)
     args = parser.parse_args()
 
     # use_t5 = 'small'  # Value should be None, 'small', or 'base', or 'large', or '3B'
@@ -717,7 +718,7 @@ if __name__ == "__main__":
         print()
 
     if True:
-        eval_epoch = 30
+        eval_epoch = args.eval_epoch
 
         # Make sure your parameter here is the exact same as the parameters you trained with,
         # else the model will not load correctly
