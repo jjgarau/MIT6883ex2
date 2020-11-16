@@ -186,9 +186,10 @@ class GCNBranch(nn.Module):
         # self.act = nn.ReLU()
         # self.drop = nn.Dropout(p=dropout)
         # self.gc2 = GraphConv(n_hid_in, n_hid_out, allow_zero_in_degree=True)
-        self.gc1 = dgl.nn.SAGEConv(n_hid_in, n_hid_in, aggregator_type='gcn', feat_drop=dropout)
-        self.gc2 = dgl.nn.SAGEConv(n_hid_in, n_hid_in, aggregator_type='gcn', feat_drop=dropout)
-        self.gc3 = GraphConv(n_hid_in, n_hid_out, allow_zero_in_degree=True)
+        n_hid_med = 2 * n_hid_in
+        self.gc1 = dgl.nn.SAGEConv(n_hid_in, n_hid_med, aggregator_type='gcn', feat_drop=dropout)
+        self.gc2 = dgl.nn.SAGEConv(n_hid_med, n_hid_med, aggregator_type='gcn', feat_drop=dropout)
+        self.gc3 = GraphConv(n_hid_med, n_hid_out, allow_zero_in_degree=True)
 
 
     def forward(self, x, graph):
