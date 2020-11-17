@@ -188,7 +188,7 @@ class GCNBranch(nn.Module):
         # self.gc2 = GraphConv(n_hid_in, n_hid_out, allow_zero_in_degree=True)
         n_hid_med = n_hid_in
         self.gc1 = dgl.nn.SAGEConv(n_hid_in, n_hid_med, aggregator_type='gcn', feat_drop=dropout)
-        # self.gc2 = dgl.nn.SAGEConv(n_hid_med, n_hid_med, aggregator_type='gcn', feat_drop=dropout)
+        self.gc2 = dgl.nn.SAGEConv(n_hid_med, n_hid_med, aggregator_type='gcn', feat_drop=dropout)
         self.gc3 = GraphConv(n_hid_med, n_hid_out, allow_zero_in_degree=True)
 
 
@@ -202,7 +202,7 @@ class GCNBranch(nn.Module):
         # out = self.drop(out)
         # out = self.gc2(graph, out)
         out = self.gc1(graph, x)
-        # out = self.gc2(graph, out)
+        out = self.gc2(graph, out)
         out = self.gc3(graph, out)
         return out
 
