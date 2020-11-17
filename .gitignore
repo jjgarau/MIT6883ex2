@@ -3,3 +3,9 @@ models/*
 *.xml
 predictions/*
 *.pdf
+.DS_Store
+.idea*
+.ipynb_checkpoints*
+__pycache__*
+*.html
+
