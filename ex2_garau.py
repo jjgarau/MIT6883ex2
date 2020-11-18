@@ -704,7 +704,7 @@ if __name__ == "__main__":
         print(f'Training loss: {np.mean(losses):.3g}')
 
         epoch += 1
-        if epoch % 10 == 0:
+        if epoch % 5 == 0:
             model.eval()
             value_match, equation_match = [], []
             with torch.no_grad():
