@@ -233,8 +233,8 @@ class GCN(nn.Module):
             # graphs = [gt_graph, gt_graph, attr_graph, attr_graph, a, a, b, b, gt_graph, gt_graph, attr_graph, attr_graph, a, a, b, b]
             graphs = [gt_graph, gt_graph, attr_graph, attr_graph, gt_graph, gt_graph, attr_graph, attr_graph, gt_graph, gt_graph, attr_graph, attr_graph, gt_graph, gt_graph, attr_graph, attr_graph]
         elif self.n_head == 8:
-            # graphs = [gt_graph, gt_graph, attr_graph, attr_graph, a, a, b, b]
-            graphs = [gt_graph, gt_graph, attr_graph, attr_graph, gt_graph, gt_graph, attr_graph, attr_graph]
+            graphs = [gt_graph, gt_graph, attr_graph, attr_graph, a, a, b, b]
+            # graphs = [gt_graph, gt_graph, attr_graph, attr_graph, gt_graph, gt_graph, attr_graph, attr_graph]
         elif self.n_head == 4:
             graphs = [gt_graph, gt_graph, attr_graph, attr_graph]
         else:
