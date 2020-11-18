@@ -9,3 +9,4 @@ predictions/*
 __pycache__*
 *.html
 *.pth
+Workshop paper/*
