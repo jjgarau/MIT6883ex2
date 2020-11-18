@@ -357,7 +357,7 @@ class Model(nn.Module):
             self.pos_embed = nn.Embedding(1 + n_max_in, n_hid)  # Use the first position as global vector
             self.transformer_layers = nn.ModuleList(TransformerBlock() for _ in range(n_layers))
 
-        self.gcn = GCN(n_head=args.n_head)
+        self.gcn = GCN(n_head=args.n_head, dropout=args.dropout)
 
         self.decoder = TreeDecoder()
 
@@ -639,6 +639,7 @@ if __name__ == "__main__":
     parser.add_argument('--n_batch', type=int, default=64)
     parser.add_argument('--learning_rate', type=float, default=1e-3)
     parser.add_argument('--n_epochs', type=int, default=100)
+    parser.add_argument('--dropout', type=float, default=0.3)
     parser.add_argument('--eval_epoch', type=int, default=100)
     parser.add_argument('--use_cpu', action='store_true')
     parser.add_argument('--load_model', action='store_true')
